@@ -1,0 +1,39 @@
+.tweet {
+  padding: 10px;
+}
+
+.tweet-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
+
+.tweet-user {
+  font-weight: bold;
+  color: rgb(29, 161, 242);
+  padding-right: 5px;
+}
+.hide {
+  display: none;
+}
+
+.tweet-time:hover + .hide {
+  display: block;
+  color: rgb(29, 161, 242);
+  font-style: italic;
+}
+
+.tweet-content {
+  /* padding-left: 16px; */
+  padding-bottom: 20px;
+}
+.tweet-created-on {
+  flex-grow: 1;
+  padding-left: 5px;
+  color: rgb(110, 118, 125);
+}
+
+.tweet-div{
+  padding-top: 1%;
+  padding-left: 1%;
+}

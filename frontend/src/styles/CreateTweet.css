@@ -1,0 +1,10 @@
+.create-tweet{
+  width: 100%;
+  padding-top: 5%;
+  padding-left: 2%;
+}
+/* @media screen and (max-width: 500px) {
+  .create-tweet{
+    padding-top: 15%;
+  }
+} */

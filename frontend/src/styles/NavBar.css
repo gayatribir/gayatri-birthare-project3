@@ -1,0 +1,25 @@
+.nav{
+  display: flex;
+  background-color: rgb(29, 161, 242);
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+}
+
+.twitter-icon {
+  color: black;
+  padding-left: 42%;
+}
+
+.nav-items{
+  list-style-type: none;
+}
+
+.nav-items .list-item{
+  display: inline-block;
+}
+
+.nav-items .list-item a{
+  text-decoration: none;
+}
