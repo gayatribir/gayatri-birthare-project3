@@ -1,14 +1,14 @@
 import React from "react";
 import "./App.css";
-import Navbar from './Navbar';
+import Navbar from './components/Navbar';
 import "./styles/ShowTweets.css"
 import "./styles/NavBar.css"
 import "./styles/CreateTweet.css"
-import Twitter from "./Twitter";
+import Twitter from "./components/Twitter";
 import {Link, Route, Routes} from "react-router-dom"
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import User from "./User";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import User from "./components/User";
 
 
 function App() {
