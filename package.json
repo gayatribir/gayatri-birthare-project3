@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ajorgense1-chwy/cs5610_spr23_mod3.git"
+    "url": "git+https://github.com/gayatribir/gayatri-birthare-project3.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ajorgense1-chwy/cs5610_spr23_mod3/issues"
+    "url": "https://github.com/gayatribir/gayatri-birthare-project3.git"
   },
-  "homepage": "https://github.com/ajorgense1-chwy/cs5610_spr23_mod3#readme",
+  "homepage": "https://github.com/gayatribir/gayatri-birthare-project3#readme",
   "dependencies": {
   },
   "devDependencies": {
