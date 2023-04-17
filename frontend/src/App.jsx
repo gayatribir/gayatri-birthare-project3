@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Navbar from './components/Navbar';
+import Navbar from './components/NavBar';
 import "./styles/ShowTweets.css"
 import "./styles/NavBar.css"
 import "./styles/CreateTweet.css"
