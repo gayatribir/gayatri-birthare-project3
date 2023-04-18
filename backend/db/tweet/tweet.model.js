@@ -16,7 +16,7 @@ function getTweetById(id) {
 }
 
 function getTweetByUserName(userName) {
-  return TweetModel.findOne({userName:userName}).exec();
+  return TweetModel.find({userName:userName}).exec();
 }
 
 function deleteTweet(id) {

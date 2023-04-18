@@ -1,12 +1,19 @@
-import React,{useReducer} from "react";
+import React,{useEffect, useReducer, useState} from "react";
 import CreateTweet from "./CreateTweet";
 import ShowTweets from "./ShowTweets";
 
-// const initialState = user
-//   ? { isLoggedIn: true, user }
-//   : { isLoggedIn: false, user: null };
+const initialState = window.localStorage.getItem("userName");
+  // ? { isLoggedIn: true, user }
+  // : { isLoggedIn: false, user: null };
+
 
 export default function Twitter(){
+  const [initialState, setInitialState] = useState("")
+
+  useEffect(function() {
+    setInitialState(window.localStorage.getItem("userName"));
+
+}, []);
 
   // const [state, dispatch] = useReducer((state, action) => {
   //   switch(action.type) {
@@ -27,7 +34,8 @@ export default function Twitter(){
   return(
     // <AppContext.Provider value={{dispatch}}>
       <div className="twitter-div">
-        <CreateTweet userName={""}></CreateTweet>
+        <h3 className="twitter-user-heading">Welcome {initialState != "" || initialState !=undefined ? initialState : ""}!</h3>
+        {initialState != "" || initialState !=undefined ? <CreateTweet userName={initialState}></CreateTweet> : ""}
         <ShowTweets></ShowTweets>
       </div>
     // </AppContext.Provider>

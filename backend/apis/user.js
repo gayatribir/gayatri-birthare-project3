@@ -35,9 +35,12 @@ router.get('/isLoggedIn', async function(req, res) {
 
 })
 
-router.post('/logOut', async function(req, res) {
+router.post('/logout', async function(req, res) {
 
-    res.cookie('username', '', {
+    res.cookie('userName', '', {
+        maxAge: 0,
+    })
+    res.cookie('token', '', {
         maxAge: 0,
     })
 

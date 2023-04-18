@@ -2,24 +2,20 @@ import React,{useState} from "react";
 import axios from "axios";
 import {useNavigate, Link} from "react-router-dom"
 
-export default function SignIn(){
+export default function SignOut(){
   const[message, setMessage] = useState("")
-  const[userName, setUserName] = useState("")
-  const[password, setPassword] = useState("")
   const navigate = useNavigate();
 
   async function submit(event){
     event.preventDefault();
     try{
-      const result = await axios.post(`http://localhost:8000/api/user/signin`, {
-        userName,password
-      });
-      if(result.status === 200){navigate("/");
-        setMessage(result.data);
-        window.localStorage.setItem("token", result.data.token);
-        window.localStorage.setItem("userName", result.data.userName);
-      }
-      
+      const result = await axios.post(`http://localhost:8000/api/user/logout`);
+      if(result.status === 200){
+        // result.c
+        window.localStorage.setItem("userName","");
+        window.localStorage.setItem("token","");
+        navigate("/");}
+      else if(result.status !== 409){setMessage(result.data);}
       else
       {setMessage("Well that's embarrasing!! For me!! Could you please try again.")}
     }catch(e){
@@ -29,11 +25,9 @@ export default function SignIn(){
 
   return(
 <div className="login-div">
-  <h1>Login</h1>
+  <h1>SignOut</h1>
   {message}
   <form action="POST">
-    <input type="userName" onChange={(e)=>{setUserName(e.target.value)}} placeholder="Username" id="username"></input>
-    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" id="password"></input>
     <input type="submit" onClick={submit}/>
   </form>
   <br/>

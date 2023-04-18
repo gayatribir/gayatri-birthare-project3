@@ -5,19 +5,26 @@ import "./ShowTweets"
 import moment from "moment/moment";
 import { Link } from "react-router-dom";
 
-function ShowTweets(){
+function ShowTweets({userName}){
   const [tweets, setTweets] = useState([]);
   const [userDetail, setUserDetail] = useState("");
   
  
   useEffect(()=>{
 
-    async function fetchAllTweets(){
-        const request = await axios.get(`http://localhost:8000/api/tweet`);
+    async function fetchTweetsFromUser(){
+        const request = await axios.get(`http://localhost:8000/api/tweet/`+userName);
         setTweets(request.data);
         console.log("done");
     }
-    fetchAllTweets();
+    async function fetchAllTweets(){
+      const request = await axios.get(`http://localhost:8000/api/tweet/`);
+      setTweets(request.data);
+      console.log("done");
+  }
+  if(userName == null){fetchAllTweets();}
+  else{fetchTweetsFromUser();}
+    
     // init();
   
 },[])
@@ -29,8 +36,8 @@ const components = [];
         
           <div key={tweet._id} className="tweet">
             <div className="tweet-header">
-                <div className="tweet-user"><Link to={'/user/' + tweet.userName}>{tweet.userName}</Link></div>
-                <div className="tweet-user tweet-time">{moment.utc(tweet.updatedAt).local().startOf('seconds').fromNow()}</div>
+                <div className="tweet-user"><Link to={'/user/' + tweet.userName} className="tweet-username">{tweet.userName}</Link></div>
+                <div className="tweet-user tweet-time"> { moment.utc(tweet.updatedAt).local().startOf('seconds').fromNow()}</div>
                 <div className="hide">{tweet.updatedAt}</div>
                 </div>
               <div className="tweet-content">{tweet.content}</div>

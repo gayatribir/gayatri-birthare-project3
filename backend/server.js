@@ -14,6 +14,7 @@ const UserModel = require('./db/user/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const TweetModel = require('./db/tweet/tweet.model');
+// const multer  = require('multer')
 
 
 
@@ -21,7 +22,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+//setting options for multer
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
 
 // SignUp 
 app.post('/api/user/signup', async function(req, res) {

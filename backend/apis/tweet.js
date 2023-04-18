@@ -12,6 +12,7 @@ const TweetModel = require('../db/tweet/tweet.model');
 router.get("/:userName", async (req, res) => {
   const userName = req.params.userName;
   const tweet = await TweetModel.getTweetByUserName(userName);
+  console.log(tweet);
   res.send(tweet);
 });
 

@@ -31,16 +31,16 @@ async function fetchTweetsFromUser(){
 
   useEffect(() => {
     init();
-    fetchTweetsFromUser();
+    // fetchTweetsFromUser();
   }, []);
 
   
 
   return (
-    <div>
+    <div className="user-div">
       <div><h1>{user.userName}</h1></div>
       <div>{user.createdAt}</div>
-      {tweets != null ? <ShowTweets></ShowTweets> : "Nothing to show"}
+      {tweets != null ? <ShowTweets userName={userName}></ShowTweets> : "Nothing to show"}
       
     </div>
   )

@@ -3,7 +3,9 @@ import React from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import SignUp from "./SignUp";
+import SignOut from "./SignOut";
 
+const isLoggedIn = window.localStorage.getItem("userName")!="" ? true :false;
 
 function Navbar(){
   // console.log("In NavBar, gamePath=",gamePath);
@@ -13,12 +15,7 @@ function Navbar(){
             <ul className="nav-items">
               <Link to="/signin">Sign In</Link>
               {` `}
-              <Link to="/signup" element={<SignUp></SignUp>}>Sign Up</Link>
-              {` `}
-              {/* <Link to="/" element>Homepage</Link> */}
-                {/* <li class="list-item"><a href="/academic.html">About</a></li>
-                <li class="list-item"><a href="/contact.html">Contact</a></li>
-                <li class="list-item"><a href="/blog.html">Blog</a></li> */}
+              {isLoggedIn ? <Link to="/signout" element={<SignOut></SignOut>}>Sign Out</Link> : <Link to="/signup" element={<SignUp></SignUp>}>Sign Up</Link>}
             </ul>
     </nav>
   )

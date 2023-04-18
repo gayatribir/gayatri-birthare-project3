@@ -5,6 +5,7 @@ export default function CreateTweet({userName}){
   const [content, setContent] = useState("");
 
   const handleSaveTweet = (event)=> {
+    if(content == null || content.length == 0){}
     saveTweet();
   }
   async function saveTweet(){
@@ -19,9 +20,8 @@ export default function CreateTweet({userName}){
     <div className="create-tweet">
       {userName!=null ? 
       <div>
-        <textarea rows={4}
-        cols={40} defaultValue="What's on your mind today!" onChange={e => setContent(e.target.value)}></textarea>
-        <div><input type="button" className="btn btn-primary btn-sm" value="Submit!" onClick={handleSaveTweet}></input></div>
+        <textarea rows={4} cols={40} onChange={e => setContent(e.target.value)}></textarea>
+        <div><input type="button" className="btn btn-primary btn-sm" disabled={!content} value="Submit!" onClick={handleSaveTweet}></input></div>
       </div>
       : ""}
     </div>

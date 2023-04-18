@@ -1,5 +1,5 @@
 .tweet {
-  padding: 10px;
+  padding: 0px;
 }
 
 .tweet-header {
@@ -30,10 +30,20 @@
 .tweet-created-on {
   flex-grow: 1;
   padding-left: 5px;
-  color: rgb(110, 118, 125);
+  color: rgb(9, 12, 14);
 }
 
 .tweet-div{
-  padding-top: 1%;
-  padding-left: 1%;
+  /* height: 95vh;
+  padding-top: 47px;
+  padding-left: 1rem; */
+  /* padding-top: 1%;
+  padding-left: 1%; */
+}
+
+.tweet-username{
+  text-decoration-line: none;
+  font-weight: bold;
+  color: rgb(29, 161, 242);
+  padding-right: 5px;
 }
