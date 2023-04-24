@@ -1,0 +1,23 @@
+.search-user{
+  /* width:37rem; */
+  background:whitesmoke;
+  border:none;
+  padding:0.44rem;
+  border-radius: 25px;
+}
+
+.search-div{
+  /* margin-bottom: 5px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .hide {
+  display: none;
+} */
+
+/* .search-user:focus + .hide {
+  display: block;
+  font-style: italic;
+} */

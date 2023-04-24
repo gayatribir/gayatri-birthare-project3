@@ -1,0 +1,17 @@
+.td {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#p-link {
+  display: block;
+  width: 34px;
+  height: 34px;
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#p-link img {
+  width: 100%;
+}

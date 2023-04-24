@@ -21,4 +21,11 @@ router.post("/", async (request, response) => {
   const tweetRes = await TweetModel.createTweet(tweet);
   response.send(tweetRes);
 });
+
+router.put("/", async (request, response) => {
+  const post = request.body;
+  const postRes = await TweetModel.updatePost(post);
+  response.send(postRes);
+});
+
 module.exports = router ;

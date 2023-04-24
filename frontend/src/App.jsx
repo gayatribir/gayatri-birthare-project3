@@ -1,17 +1,23 @@
 import React from "react";
 import "./App.css";
 import Navbar from './components/NavBar';
-import "./styles/ShowTweets.css"
+import "./styles/ShowPosts.css"
 import "./styles/NavBar.css"
-import "./styles/CreateTweet.css"
+import "./styles/CreatePost.css"
 import "./styles/User.css"
 import "./styles/Twitter.css"
+import "./styles/SignIn.css"
 import Twitter from "./components/Twitter";
 import {Link, Route, Routes} from "react-router-dom"
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import User from "./components/User";
 import SignOut from "./components/SignOut";
+import './styles/Avatar.css'
+import './styles/Post.css'
+import './styles/SearchUser.css'
+import UserList from "./components/UserList";
+import './styles/UserList.css';
 
 
 function App() {
@@ -25,10 +31,9 @@ function App() {
         <Route path="/signout" element={<SignOut/>}></Route>
         <Route path="/" element={<Twitter/>}></Route>
         <Route path="/user/:userName" element={<User/>}></Route>
+        <Route path="/users/:userName" element={<UserList/>}></Route>
+        {/* <Link to="/users" element={<UserList userRecords={userRecords}></UserList>}></Link> */}
       </Routes>
-      {/* <div className="twitter-div">
-      <Link to="/" element={<Twitter/>}></Link>
-      </div> */}
       
     </div>
   );

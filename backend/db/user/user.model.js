@@ -12,7 +12,12 @@ function findUserByUsername(username) {
     return UserModel.findOne({userName: username}).exec();
 }
 
+function findUsers() {
+    return UserModel.find().exec();
+}
+
 module.exports = {
     createUser,
     findUserByUsername,
+    findUsers
 }

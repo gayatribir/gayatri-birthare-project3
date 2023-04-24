@@ -22,13 +22,17 @@ function getTweetByUserName(userName) {
 function deleteTweet(id) {
   return TweetModel.deleteOne({_id: id}).exec();
 }
+function updatePost(post) {
+  return TweetModel.updateOne(post);
+}
 
 module.exports = {
   createTweet,
   returnAllTweets,
   getTweetById,
   deleteTweet,
-  getTweetByUserName
+  getTweetByUserName,
+  updatePost
 }
 
 // app.post("/add", async (request, response) => {

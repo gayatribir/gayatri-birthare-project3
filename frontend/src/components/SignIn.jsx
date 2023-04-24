@@ -8,6 +8,8 @@ export default function SignIn(){
   const[password, setPassword] = useState("")
   const navigate = useNavigate();
 
+  const navigateToSignup=()=>{navigate("/signup");}
+
   async function submit(event){
     event.preventDefault();
     try{
@@ -18,6 +20,7 @@ export default function SignIn(){
         setMessage(result.data);
         window.localStorage.setItem("token", result.data.token);
         window.localStorage.setItem("userName", result.data.userName);
+        // dispatch({type:"SIGNIN", payload: {result.data.token, result.data.userName}});
       }
       
       else
@@ -29,27 +32,38 @@ export default function SignIn(){
 
   return(
 <div className="login-div">
-  <h1>Login</h1>
   {message}
-  <form action="POST">
-    <input type="userName" onChange={(e)=>{setUserName(e.target.value)}} placeholder="Username" id="username"></input>
-    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" id="password"></input>
-    <input type="submit" onClick={submit}/>
-  </form>
+  <div className="Auth-form-container">
+    <form action="POST" className="Auth-form">
+      <div className="Auth-form-content">
+        <h1 className="Auth-form-title">Login</h1>
+        <div className="text-center">
+              Not registered yet?{" "}
+              <span className="link-primary" onClick={navigateToSignup}>
+                Sign Up
+              </span>
+        </div>
+        <div className="form-group mt-3">
+          <label>Email address</label>
+          <input className="form-control mt-1" type="userName" onChange={(e)=>{setUserName(e.target.value)}} placeholder="Enter username" id="username"></input>
+        </div>
+        <div className="form-group mt-3">
+          <label>Password</label>
+          <input className="form-control mt-1" type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Enter password" id="password"></input>{` `}
+        </div>
+        <div className="d-grid gap-2 mt-3">
+          <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
+        </div>
+        <p className="forgot-password text-right mt-2">
+            Forgot <a href="#">password?</a>
+          </p>
+      </div>
+    </form>
+  </div>
   <br/>
-  <p>OR</p>
+  {/* <p>OR</p>
   <br/>
-  <Link to="/signup">Signup Page</Link>
-
-  {/* <form onSubmit = {submitSignin}>
-    <label htmlFor="userName">User Name:</label>
-    <input name = "userName" />
-    <br />
-    <label htmlFor="password">Password:</label>
-    <input name = "password" />
-    <br />
-    <button type = "submit">SignIn</button>
-  </form> */}
+  <Link to="/signup">Signup Page</Link> */}
 </div>
   )
 }

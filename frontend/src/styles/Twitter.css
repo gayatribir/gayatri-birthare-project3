@@ -4,5 +4,24 @@
 }
 
 .twitter-user-heading{
-  padding-top: 20px;
+  padding-top: 29px;
 }
+
+
+.twitter-div {
+  max-width: 600px;
+  margin: 0 auto;
+  /* margin-top: 20px; */
+}
+
+.app-logo {
+  margin-bottom: 18px;
+}
+
+/* .separator {
+  background-color: rgb(21, 24, 28);
+  border: 1px solid rgb(47, 51, 54);
+  border-top-width: thin;
+  border-bottom-width: thin;
+  height: 10px;
+} */

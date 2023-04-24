@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import ShowTweets from "./ShowTweets";
+import ShowTweets from "./ShowPosts";
+import Avatar from "./Avatar";
 
 function User(){
   const [user, setUser] = useState([]);
@@ -38,10 +39,10 @@ async function fetchTweetsFromUser(){
 
   return (
     <div className="user-div">
-      <div><h1>{user.userName}</h1></div>
-      <div>{user.createdAt}</div>
+      <div className="avatar-div"><Avatar userName={userName.charAt(0)}/>
+        <div className="userdetails-div"><h2>{userName}</h2>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</div>
+      </div>
       {tweets != null ? <ShowTweets userName={userName}></ShowTweets> : "Nothing to show"}
-      
     </div>
   )
 }

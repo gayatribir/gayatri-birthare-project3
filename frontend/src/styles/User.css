@@ -1,5 +1,34 @@
 .user-div{
   height: 95vh;
-  padding-top: 47px;
+  padding-top: 76px;
   padding-left: 1rem;
+}
+.avatar-div{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2px;
+}
+
+@media screen and (max-width: 500px){
+  .user-div{
+    height: 95vh;
+    padding-top: 54px;
+    padding-left: 1rem;
+  }
+}
+
+.post-div{
+  flex-grow: 1;
+}
+.post-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
+
+.post-user {
+  font-weight: bold;
+  color: rgb(29, 161, 242);
+  padding-right: 5px;
 }
