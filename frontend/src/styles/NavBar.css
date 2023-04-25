@@ -19,6 +19,7 @@
   list-style-type: none;
   display: flex;
   align-items: center;
+  padding-left: 0px;
 }
 
 .nav-items .list-item{
@@ -75,6 +76,21 @@
   color: maroon;
 }
 
-.triangle-div:active{
-  
+.Dropdown-control{
+  background-color: rgb(29,161,242);
+  border: 0px solid rgb(29, 161, 242);
+  font-size:larger;
+  text-transform:capitalize;
+  color: maroon;
+  font-weight: 400;
+}
+
+.Dropdown-menu{
+  background-color: whitesmoke;
+  font-weight: 400;
+}
+
+.Dropdown-arrow{
+border-color:black transparent transparent;
+border-width: 5px 5px 0;
 }

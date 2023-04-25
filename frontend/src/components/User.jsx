@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import ShowTweets from "./ShowPosts";
+import ShowPosts from "./ShowPosts";
 import Avatar from "./Avatar";
 
 function User(){
@@ -40,9 +40,10 @@ async function fetchTweetsFromUser(){
   return (
     <div className="user-div">
       <div className="avatar-div"><Avatar userName={userName.charAt(0)}/>
-        <div className="userdetails-div"><h2>{userName}</h2>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</div>
+        {/* <div className="userdetails-div"><h2>{user.length > 0 ? user[0].firstName+" "+ user[0].lastName :""}</h2><h4>{userName}</h4>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</div> */}
       </div>
-      {tweets != null ? <ShowTweets userName={userName}></ShowTweets> : "Nothing to show"}
+      <div className="intro-div"><h2>{user.length > 0 ? user[0].firstName+" "+ user[0].lastName :""}</h2><h4>{userName}</h4>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</div>
+      {tweets != null ? <ShowPosts userName={userName}></ShowPosts> : "Nothing to show"}
     </div>
   )
 }

@@ -1,20 +1,23 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import axios from "axios";
 import {useNavigate, Link} from "react-router-dom"
+import { AppContext } from '../context';
 
 export default function SignOut(){
   const[message, setMessage] = useState("")
   const navigate = useNavigate();
+  const {dispatch} = useContext(AppContext);
 
   async function submit(event){
     event.preventDefault();
     try{
       const result = await axios.post(`http://localhost:8000/api/user/logout`);
       if(result.status === 200){
-        // result.c
-        window.localStorage.setItem("userName","");
-        window.localStorage.setItem("token","");
-        navigate("/");}
+        window.localStorage.removeItem("userName");
+        window.localStorage.removeItem("token");
+        dispatch({type: "SIGNOUT"});
+        navigate("/");
+      }
       else if(result.status !== 409){setMessage(result.data);}
       else
       {setMessage("Well that's embarrasing!! For me!! Could you please try again.")}

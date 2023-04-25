@@ -1,7 +1,5 @@
 
 function Avatar({userName}) {
-  // const [name, setName] = useState(userName)
-
   console.log("Avatar ",userName);
 
   return(

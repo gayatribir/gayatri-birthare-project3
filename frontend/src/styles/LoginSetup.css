@@ -1,0 +1,15 @@
+#signInBtn{
+  background: none;
+}
+
+#signUpBtn{background: none;}
+
+.nav-options-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-div{
+  
+}

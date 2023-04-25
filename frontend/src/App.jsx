@@ -18,7 +18,9 @@ import './styles/Post.css'
 import './styles/SearchUser.css'
 import UserList from "./components/UserList";
 import './styles/UserList.css';
-
+import './styles/UserNavigate.css'
+import './styles/PostActions.css'
+import './styles/LoginSetup.css'
 
 function App() {
 

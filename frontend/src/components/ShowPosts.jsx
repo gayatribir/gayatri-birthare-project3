@@ -36,7 +36,7 @@ function ShowPosts({userName}){
       {
         posts.map(post =>(
           <li key={post._id} className="timeline-item">
-            <Post userName={post.userName} updatedAt={post.updatedAt} content={post.content}></Post>
+            <Post postUserName={post.userName} updatedAt={post.updatedAt} content={post.content} tweetId={post._id} loggedInUser={userName}></Post>
          </li>
         ))
       }

@@ -89,7 +89,6 @@
   padding: 0;
   border: 0px solid rgb(47, 51, 54);
   border-radius: 10px;
-  padding-right: 18px;
 }
 
 .timeline-item {
@@ -104,6 +103,6 @@
 
 @media screen and (max-width: 500px){
   .timeline{
-    padding-right: 14px;
+    /* padding-right: 14px; */
   }
 }

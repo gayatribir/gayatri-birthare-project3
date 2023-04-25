@@ -1,15 +1,12 @@
 import React,{useEffect, useReducer, useState} from "react";
 import CreatePost from "./CreatePost";
 import ShowPosts from "./ShowPosts";
-import SearchUser from "./SearchUser";
-
-// const userName = window.localStorage.getItem("userName")==null ? "guest" : window.localStorage.getItem("userName");
-  // ? { isLoggedIn: true, user }
-  // : { isLoggedIn: false, user: null };
+import {AppContext} from "../context"
 
 const getInitialState = (isLoggedIn) => {
   return { 
-    isLoggedIn:isLoggedIn
+    isLoggedIn:isLoggedIn,
+    userName: window.localStorage.getItem("userName")
   };
 }
 
@@ -50,10 +47,12 @@ reloadState(isLoggedIn));
   
 
   return(
+    <AppContext.Provider value={{dispatch}}>
       <div className="twitter-div">
         <h3 className="twitter-user-heading">Welcome {userName}!</h3>
         {userName != "guest"? <CreatePost userName={userName}></CreatePost> : ""}
         <ShowPosts></ShowPosts>
       </div>
+      </AppContext.Provider>
   )
 }

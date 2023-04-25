@@ -1,12 +1,14 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import axios from "axios";
 import {useNavigate, Link} from "react-router-dom"
+import { AppContext } from '../context';
 
 export default function SignUp(){
   const[message, setMessage] = useState("")
   const[userName, setUserName] = useState("")
   const[password, setPassword] = useState("")
   const navigate = useNavigate();
+  const {dispatch} = useContext(AppContext);
 
   const navigateToSignIn=()=>{navigate("/signin");}
 
@@ -16,7 +18,7 @@ export default function SignUp(){
       const result = await axios.post(`http://localhost:8000/api/user/signin`, {
         userName,password
       });
-      if(result.status === 200){navigate("/home");}
+      if(result.status === 200){navigate("/home");dispatch({type: "SIGNUP"});}
       else if(result.status !== 409){setMessage(result.data);}
       else
       {setMessage("Well that's embarrasing!! For me!! Could you please try again.")}

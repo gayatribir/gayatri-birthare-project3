@@ -7,6 +7,7 @@ exports.UserSchema = new Schema({
   userName: { type: String, unique: true,required:true },
   password: { type: String,required:true },
   token: { type: String },
+  description: { type:String, default: null},
 },{collection : 'User', timestamps:true});
 
 // module.exports = mongoose.model("user", UserSchema);

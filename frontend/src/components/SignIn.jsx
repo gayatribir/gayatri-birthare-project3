@@ -1,12 +1,14 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 import axios from "axios";
 import {useNavigate, Link} from "react-router-dom"
+import { AppContext } from '../context';
 
 export default function SignIn(){
   const[message, setMessage] = useState("")
   const[userName, setUserName] = useState("")
   const[password, setPassword] = useState("")
   const navigate = useNavigate();
+  const {dispatch} = useContext(AppContext);
 
   const navigateToSignup=()=>{navigate("/signup");}
 
@@ -20,6 +22,7 @@ export default function SignIn(){
         setMessage(result.data);
         window.localStorage.setItem("token", result.data.token);
         window.localStorage.setItem("userName", result.data.userName);
+        dispatch({type: "SIGNIN"});
         // dispatch({type:"SIGNIN", payload: {result.data.token, result.data.userName}});
       }
       
