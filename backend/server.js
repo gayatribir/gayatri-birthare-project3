@@ -110,8 +110,8 @@ app.get("/api/tweet/", async(req, res) => {
 
 
 // app.use('/api/tweet', tweet);
-// const auth = require("./middleware/auth");
-// app.use(auth.verifyToken);
+const auth = require("./middleware/auth");
+app.use(auth.verifyToken);
 app.use('/api/tweet', tweet);
 app.use('/api/user/', user)
 
