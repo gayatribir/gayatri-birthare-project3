@@ -1,7 +1,6 @@
-import React,{useEffect, useReducer, useState} from "react";
+import React from "react";
 import CreatePost from "./CreatePost";
 import ShowPosts from "./ShowPosts";
-import {AppContext} from "../context"
 
 const getInitialState = (isLoggedIn) => {
   return { 
@@ -25,34 +24,34 @@ export default function Twitter(){
   const isLoggedIn = userName!=null ? true :false;
 
 
-const [state, dispatch] = useReducer((state, action) => {
-  switch(action.type) {
-    case "SIGNIN":
-      return {
-        ...state,
-        isLoggedIn: [...state.isLoggedIn, action.payload]
-      };
-      case "SIGNOUT":
-      return {
-        ...state,
-        isLoggedIn: [...state.isLoggedIn, action.payload]
-      };
-      case "SIGNUP":
-        return getInitialState(isLoggedIn);
-    default:
-      state
-  }
-}, 
-reloadState(isLoggedIn));
+// const [state, dispatch] = useReducer((state, action) => {
+//   switch(action.type) {
+//     case "SIGNIN":
+//       return {
+//         ...state,
+//         isLoggedIn: [...state.isLoggedIn, action.payload]
+//       };
+//       case "SIGNOUT":
+//       return {
+//         ...state,
+//         isLoggedIn: [...state.isLoggedIn, action.payload]
+//       };
+//       case "SIGNUP":
+//         return getInitialState(isLoggedIn);
+//     default:
+//       state
+//   }
+// }, 
+// reloadState(isLoggedIn));
   
 
   return(
-    <AppContext.Provider value={{dispatch}}>
+    // <AppContext.Provider value={{dispatch}}>
       <div className="twitter-div">
-        <h3 className="twitter-user-heading">Welcome {userName}!</h3>
-        {userName != "guest"? <CreatePost userName={userName}></CreatePost> : ""}
+        {/* <h3 className="twitter-user-heading">Welcome {userName}!</h3> */}
+        {userName != "guest"? <CreatePost userName={userName} tweetId={null}></CreatePost> : ""}
         <ShowPosts></ShowPosts>
       </div>
-      </AppContext.Provider>
+      // </AppContext.Provider>
   )
 }

@@ -25,7 +25,7 @@ export default function LoginSetup(isLoggedIn, userName){
   }else{
     return(
     <div className="nav-options-div">
-      <Button variant="secondary" id="signin-btn" onClick={onSignInClick}>Sign In</Button>{' '}
+      <Button variant="secondary" id="signin-btn" onClick={onSignInClick}>Sign In</Button>{'    '}
       <Button variant="secondary" id="signup-btn" onClick={onSignUpClick}>Sign Up</Button>
     </div>
     )

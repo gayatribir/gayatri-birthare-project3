@@ -7,11 +7,17 @@ export default function SignOut(){
   const[message, setMessage] = useState("")
   const navigate = useNavigate();
   const {dispatch} = useContext(AppContext);
+  const userName = window.localStorage.getItem("userName");
 
   async function submit(event){
     event.preventDefault();
     try{
-      const result = await axios.post(`http://localhost:8000/api/user/logout`);
+      const result = await axios.get(`http://localhost:8000/api/user/logout`+userName,{
+        headers:{
+          "token":window.localStorage.getItem("token"),
+          "userName":window.localStorage.getItem("userName")
+        }
+      });
       if(result.status === 200){
         window.localStorage.removeItem("userName");
         window.localStorage.removeItem("token");
@@ -28,25 +34,15 @@ export default function SignOut(){
 
   return(
 <div className="login-div">
-  <h1>SignOut</h1>
+  <h1>Do you want to sign out?</h1>
   {message}
   <form action="POST">
     <input type="submit" onClick={submit}/>
   </form>
   <br/>
-  <p>OR</p>
+  {/* <p>OR</p>
   <br/>
-  <Link to="/signup">Signup Page</Link>
-
-  {/* <form onSubmit = {submitSignin}>
-    <label htmlFor="userName">User Name:</label>
-    <input name = "userName" />
-    <br />
-    <label htmlFor="password">Password:</label>
-    <input name = "password" />
-    <br />
-    <button type = "submit">SignIn</button>
-  </form> */}
+  <Link to="/signup">Signup Page</Link> */}
 </div>
   )
 }

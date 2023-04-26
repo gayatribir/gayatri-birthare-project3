@@ -52,3 +52,9 @@
 .create-post-div{
   margin-bottom: 5px;
 }
+@media screen and (max-width: 500px) {
+  .create-post-div{
+    width: 340px;
+    height: 130px;
+  }
+}

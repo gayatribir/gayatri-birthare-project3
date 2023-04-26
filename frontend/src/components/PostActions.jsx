@@ -1,7 +1,8 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+import {useNavigate, Link} from "react-router-dom"
 
 function PostActions({tweetId}) {
+  const navigate = useNavigate();
   return (
     <Dropdown>
     <Dropdown.Toggle variant="info" id="dropdown-basic" size="sm" className='post-ddl'>

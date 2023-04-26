@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from "react-router-dom"
 import { useParams } from "react-router";
 import User from "./User";
+import Avatar from './Avatar';
 
 export default function UserList() {
   const { userName } = useParams();
@@ -10,7 +11,12 @@ export default function UserList() {
   const [users, setUsers] = useState([]);
  
   async function searchUsers(userName){
-    const request = await axios.get(`http://localhost:8000/api/user/`+userName);
+    const request = await axios.get(`http://localhost:8000/api/user/`+userName,{
+      headers:{
+        "token":window.localStorage.getItem("token"),
+        "userName":window.localStorage.getItem("userName")
+      }
+    });
     setUsers(request.data);
     console.log("user search done");
     console.log(request.data);
@@ -20,16 +26,24 @@ export default function UserList() {
     searchUsers(userName);
   }, [userName]);
 
+  if(users.length > 0){
   return (
       <div className="user-result-div">
+        <p>Here are the results:</p>
         { users.length > 0 ?
         
         users.map(user =>(
-            <li key={user._id}>
+            <li key={user._id} className="user-result-li">
+              <Avatar userName={user.userName.charAt(0)}></Avatar>
               <Link to={"/user/"+user.userName} element={<User></User>}>{user.userName}</Link>
            </li>
           )) : ""
         }
       </div>
   );
+      }else{return(
+        <div className="user-result-div">
+          <p>Sorry, no user exist in our system by this username.</p>
+        </div>
+      );}
 }

@@ -8,7 +8,8 @@ import PostActions from "./PostActions";
 
 function Post({postUserName, updatedAt, content, tweetId, loggedInUser}) {
   
-  console.log(postUserName);
+  console.log("postUserName=",postUserName);
+  console.log("loggedInUser=",loggedInUser);
 
   return (
     <div className="post-border-div">

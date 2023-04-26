@@ -21,6 +21,9 @@ import './styles/UserList.css';
 import './styles/UserNavigate.css'
 import './styles/PostActions.css'
 import './styles/LoginSetup.css'
+import CreatePost from "./components/CreatePost";
+import EditPost from "./components/EditPost";
+import './styles/EditPost.css'
 
 function App() {
 
@@ -34,7 +37,7 @@ function App() {
         <Route path="/" element={<Twitter/>}></Route>
         <Route path="/user/:userName" element={<User/>}></Route>
         <Route path="/users/:userName" element={<UserList/>}></Route>
-        {/* <Link to="/users" element={<UserList userRecords={userRecords}></UserList>}></Link> */}
+        <Route path="/edit/:postId" element={<EditPost/>}></Route>
       </Routes>
       
     </div>

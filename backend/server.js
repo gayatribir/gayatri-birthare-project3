@@ -1,4 +1,5 @@
 const express = require('express');
+
 const helper = require('./apis/helper');
 const pokemon = require('./apis/pokemon')
 const tweet = require('./apis/tweet')
@@ -22,9 +23,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-//setting options for multer
-// const storage = multer.memoryStorage();
-// const upload = multer({ storage: storage });
 
 // SignUp 
 app.post('/api/user/signup', async function(req, res) {
@@ -100,14 +98,20 @@ app.post('/api/user/signin', async function(req, res) {
 
 //Get all tweets for guest session
 app.get("/api/tweet/", async(req, res) => {
+  try{
     let tweets = await TweetModel.returnAllTweets();
     res.status(200).send(tweets);
+  }catch(error){
+    console.log(error);
+  }
+    
   });
-  app.use('/api/tweet', tweet);
 
-// const auth = require("./middleware/auth");
-// app.use(auth.verifyToken);
-app.use('/api/pokemon/', pokemon);
+
+// app.use('/api/tweet', tweet);
+const auth = require("./middleware/auth");
+app.use(auth.verifyToken);
+app.use('/api/tweet', tweet);
 app.use('/api/user/', user)
 
 

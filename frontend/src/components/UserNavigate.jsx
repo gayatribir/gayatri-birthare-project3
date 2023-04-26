@@ -4,7 +4,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 function UserNavigate({userName}) {
   return (
     <Dropdown>
-    <Dropdown.Toggle variant="primary" id="dropdown-basic" className='navigate-user-ddl'>
+    <Dropdown.Toggle variant="primary" size="sm" id="dropdown-basic" className='navigate-user-ddl'>
       {userName}
     </Dropdown.Toggle>
 

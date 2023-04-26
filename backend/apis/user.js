@@ -15,9 +15,9 @@ router.get('/', async function(request, response) {
 
 router.get('/:userName', async function(request, response) {
     const user = request.params.userName.toLowerCase();
-    console.log("in search api")
+    // console.log("in search api")
     let userData = await UserModel.findUsers();
-    console.log(userData);
+    // console.log(userData);
     userData = userData.filter(u => {
         if (u.userName.toLowerCase().includes(user)) {
             return true;
@@ -27,24 +27,25 @@ router.get('/:userName', async function(request, response) {
     return response.send(userData);
 })
 
-router.get('/isLoggedIn', async function(req, res) {
-    const username = req.cookies.username;
-    if(!username) {return res.send({username: null})}
-    let decryptedUsername;
-    try {
-        decryptedUsername = jwt.verify(username, "HUNTERS_PASSWORD")
-    } catch(e) {
-        return res.send({username: null})
-    }
+// router.get('/isLoggedIn', async function(req, res) {
+//     const username = req.cookies.username;
+//     if(!username) {return res.send({username: null})}
+//     let decryptedUsername;
+//     try {
+//         decryptedUsername = jwt.verify(username, "HUNTERS_PASSWORD")
+//     } catch(e) {
+//         return res.send({username: null})
+//     }
     
-    if(!decryptedUsername) {return res.send({username: null});} 
-    else {return res.send({username: decryptedUsername})}
-})
+//     if(!decryptedUsername) {return res.send({username: null});} 
+//     else {return res.send({username: decryptedUsername})}
+// })
 
-router.post('/logout', async function(req, res) {
+router.get('/logout/:userName', async function(req, res) {
+    const username = req.params.userName;
     res.cookie('userName', '', {maxAge: 0,})
     res.cookie('token', '', {maxAge: 0,})
-    res.send(true);
+    res.send("You are successfully logged out.");
 });
 
 router.get('/:username', async function(req, res) {

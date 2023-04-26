@@ -29,7 +29,7 @@ export default function SearchUser(){
         <div className="col-12">
             <div className="input-group">
               <input className="search-user" key="search-bar" value={userName} placeholder="Search user" onChange={(e) => onChange(e.target.value)}/>
-              <input type="button" className="btn btn-secondary" onClick={onSearch} value="Search User"></input>
+              <input type="button" id="search-btn" className="" onClick={onSearch} value="Search"></input>
             </div>
         </div>
         {/* {userRecords.length > 0 ? <Navigate to="/users" state={{ userRecords: userRecords}} replace={true} /> : ""} */}

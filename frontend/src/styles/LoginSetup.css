@@ -1,8 +1,9 @@
-#signInBtn{
+#signin-btn{
   background: none;
+  margin-right: 5px;
 }
 
-#signUpBtn{background: none;}
+#signup-btn{background: none;}
 
 .nav-options-div{
   display: flex;
@@ -12,4 +13,12 @@
 
 .avatar-div{
   
+}
+@media screen and (max-width: 500px) {
+  .avatar-div{
+    visibility: hidden;
+  }
+}
+.nav-options-div{
+
 }

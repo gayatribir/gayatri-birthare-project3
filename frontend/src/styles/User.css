@@ -2,6 +2,7 @@
   height: 95vh;
   padding-top: 76px;
   padding-left: 1rem;
+  padding-right: 20px;
 }
 .avatar-div{
   display: flex;
@@ -10,10 +11,15 @@
 }
 
 .intro-div{
-  border: 1px solid black;
+  border: 0px solid black;
   padding: 1px;
   border-radius: 10px;
+  color: darkmagenta;
   /* border-bottom: 1px none rgb(47, 51, 54); */
+}
+
+.intro-div h2{
+  text-shadow: 2px 2px 5px red;
 }
 
 @media screen and (max-width: 500px){
