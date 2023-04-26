@@ -13,7 +13,8 @@ require("dotenv").config();
 require("./config/database").connect();
 const UserModel = require('./db/user/user.model');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
+const auth = require("./middleware/auth");
 const TweetModel = require('./db/tweet/tweet.model');
 // const multer  = require('multer')
 
@@ -109,7 +110,7 @@ app.get("/api/tweet/", async(req, res) => {
 
 
 // app.use('/api/tweet', tweet);
-const auth = require("./middleware/auth");
+
 app.use(auth.verifyToken);
 app.use('/api/tweet', tweet);
 app.use('/api/user/', user)
