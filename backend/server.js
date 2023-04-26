@@ -111,7 +111,7 @@ app.get("/api/tweet/", async(req, res) => {
 
 // app.use('/api/tweet', tweet);
 
-app.use(auth.verifyToken);
+// app.use(auth.verifyToken);
 app.use('/api/tweet', tweet);
 app.use('/api/user/', user)
 
