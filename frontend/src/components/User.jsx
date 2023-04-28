@@ -1,36 +1,39 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import ShowPosts from "./ShowPosts";
 import Avatar from "./Avatar";
+import {useNavigate} from "react-router-dom"
+import Tooltip from "react-bootstrap/Tooltip";
+import { AppContext } from '../context';
 
 function User(){
-  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
+  const {userName: loggedInUser, token} = useContext(AppContext);
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    description: ""
+  });
   const [tweets, setTweets] = useState([]);
   const { userName } = useParams();
 
+  const showTooltip = props => (
+    <Tooltip {...props}>MaxLength of a post is 200 characters.</Tooltip>
+  );
+
   async function init(){
     console.log("In User view profile: init() method");
-    const request = await axios.get("http://localhost:8000/api/user/" + userName,{
-      headers:{
-        "token":window.localStorage.getItem("token"),
-        "userName":window.localStorage.getItem("userName")
-      }
-    })
-    setUser(request.data);
+    const response = await axios.get("/api/user/search/" + userName)
+    setUser(response.data);
     console.log("init done");
 }
 
 async function fetchTweetsFromUser(){
-  const request = await axios.get("http://localhost:8000/api/tweet/user/" + userName,{
-    headers:{
-      "token":window.localStorage.getItem("token"),
-      "userName":window.localStorage.getItem("userName")
-    }
-  })
-  setTweets(request.data);
-  console.log("fetchTweetsFromUser done");
+  const response = await axios.get("/api/tweet/user/" + userName)
+  setTweets(response.data);
 }
 
   useEffect(() => {
@@ -38,20 +41,24 @@ async function fetchTweetsFromUser(){
     fetchTweetsFromUser();
   }, []);
 
+  const handleEditDesc =(e)=>{
+    navigate("/editprofile/"+userName)
+  }
   
 
   return (
     <div className="user-div">
-      <div className="avatar-div"><Avatar userName={userName.charAt(0)}/>
-        {/* <div className="userdetails-div"><h2>{user.length > 0 ? user[0].firstName+" "+ user[0].lastName :""}</h2><h4>{userName}</h4>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</div> */}
-      </div>
+      <div className="profile-avatar-div">
+        <Avatar userName={userName.charAt(0)}/>
       <div className="intro-div">
-        <h2>{user.length > 0 ? user[0].firstName+" "+ user[0].lastName :""}</h2>
-        <h4>@{userName}</h4>
-        <p>joined on {user.length > 0 ? user[0].createdAt.substring(0,10)  :""}</p>
-        <p>{user.length > 0 ? user[0].description  :""}</p>
+        <h2>@{user.length > 0 ? user[0].userName :""}</h2>
+        <p>{user.length > 0 ? user[0].firstName+" "+user[0].lastName :""} joined on {user.length > 0 ? user[0].createdAt.substring(0,10)+" "  :""}</p>
+        <p >{user.length > 0 && user[0].description != null ? user[0].description+"  "  :"No description has been set "}{loggedInUser === userName ? <span className="desc-p">{user.length > 0 && userName === user[0].userName ? <input type="button" value="✏️" onClick={handleEditDesc}></input> : ""}</span> :""}</p>
+        <div className="hide">Click edit button to edit description</div>
       </div>
-      {tweets != null ? <ShowPosts userName={userName}></ShowPosts> : "Nothing to show"}
+      </div>
+      {tweets != null ? <ShowPosts userName={userName} isHomePage={false}></ShowPosts> : "Nothing to show"}
+      
     </div>
   )
 }

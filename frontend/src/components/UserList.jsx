@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Link} from "react-router-dom"
 import { useParams } from "react-router";
@@ -7,16 +7,10 @@ import Avatar from './Avatar';
 
 export default function UserList() {
   const { userName } = useParams();
-  const [query, setQuery] = useState("");
   const [users, setUsers] = useState([]);
  
   async function searchUsers(userName){
-    const request = await axios.get(`http://localhost:8000/api/user/`+userName,{
-      headers:{
-        "token":window.localStorage.getItem("token"),
-        "userName":window.localStorage.getItem("userName")
-      }
-    });
+    const request = await axios.get(`/api/user/` + userName);
     setUsers(request.data);
     console.log("user search done");
     console.log(request.data);
@@ -34,8 +28,8 @@ export default function UserList() {
         
         users.map(user =>(
             <li key={user._id} className="user-result-li">
-              <Avatar userName={user.userName.charAt(0)}></Avatar>
-              <Link to={"/user/"+user.userName} element={<User></User>}>{user.userName}</Link>
+              <Avatar userName={user.firstName.charAt(0)}></Avatar>
+              <Link to={"/user/"+user.userName} element={<User></User>} className="capitalize-link">{user.firstName+" "+user.lastName}</Link>
            </li>
           )) : ""
         }

@@ -1,24 +1,20 @@
 const express = require('express');
 
-const helper = require('./apis/helper');
-const pokemon = require('./apis/pokemon')
 const tweet = require('./apis/tweet')
 const user = require('./apis/user')
-const app = express();
 const mongoose = require('mongoose')
 const cors = require('cors')
 const path = require('path')
 const cookieParser = require('cookie-parser');
-require("dotenv").config();
+// require("dotenv").config();
 require("./config/database").connect();
 const UserModel = require('./db/user/user.model');
 const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken')
-
+const jwt = require('jsonwebtoken')
 const TweetModel = require('./db/tweet/tweet.model');
-// const multer  = require('multer')
+const auth = require("./middleware/auth");
 
-
+const app = express();
 
 app.use(cors());
 app.use(express.json());
@@ -49,11 +45,8 @@ app.post('/api/user/signup', async function(req, res) {
             {expiresIn: "2h",}
         );
         newUser.token = token;
-
         res.cookie("userName", token);
-        
-        return res.status(200).send(newUser)
-    
+        return res.status(200).send(newUser);
     } catch (e) {
         res.status(500).send(null);
         console.log(e);
@@ -68,7 +61,7 @@ app.post('/api/user/signin', async function(req, res) {
     
         // Validate user input
         if (!(userName && password)) {
-          res.status(400).send("All inputs are required");
+          return res.status(400).send("All inputs are required");
         }
         // Validate if user exist in our database
         const user = await UserModel.findUserByUsername(userName);
@@ -77,20 +70,18 @@ app.post('/api/user/signin', async function(req, res) {
           // Create token
           const token = jwt.sign(
             { userId: user._id, userName },
-            process.env.TOKEN_KEY,
-            {
-              expiresIn: "2h",
-            }
+            "some_secret_key"
           );
     
           // save user token
           user.token = token;
-          res.cookie("userName", token);
+          res.cookie("token", token, {maxAge:7200000});
     
+          // console.log(JSON.stringify(user));
           // user
           return res.status(200).send(user);
         }
-        return res.status(400).send("Invalid Credentials");
+        return res.status(400).send("Invalid Credentials entered.");
       } catch (err) {
         res.status(500).send(null);
         console.log(err);
@@ -108,21 +99,10 @@ app.get("/api/tweet/", async(req, res) => {
     
   });
 
-
-// app.use('/api/tweet', tweet);
-const auth = require("./middleware/auth");
 app.use(auth.verifyToken);
-app.use('/api/tweet', tweet);
+
+app.use('/api/tweet/', tweet);
 app.use('/api/user/', user)
-
-
-
-
-// app.post("/welcome", auth, (req, res) => {
-//   res.status(200).send("Welcome 🙌 ");
-// });
-
-
 
 let frontend_dir = path.join(__dirname, '..', 'frontend', 'dist')
 
@@ -131,7 +111,6 @@ app.get('*', function (req, res) {
     console.log("received request");
     res.sendFile(path.join(frontend_dir, "index.html"));
 });
-
 
 
 app.listen(process.env.PORT || 8000, function() {

@@ -15,9 +15,7 @@ router.get('/', async function(request, response) {
 
 router.get('/:userName', async function(request, response) {
     const user = request.params.userName.toLowerCase();
-    // console.log("in search api")
     let userData = await UserModel.findUsers();
-    // console.log(userData);
     userData = userData.filter(u => {
         if (u.userName.toLowerCase().includes(user)) {
             return true;
@@ -27,24 +25,21 @@ router.get('/:userName', async function(request, response) {
     return response.send(userData);
 })
 
-// router.get('/isLoggedIn', async function(req, res) {
-//     const username = req.cookies.username;
-//     if(!username) {return res.send({username: null})}
-//     let decryptedUsername;
-//     try {
-//         decryptedUsername = jwt.verify(username, "HUNTERS_PASSWORD")
-//     } catch(e) {
-//         return res.send({username: null})
-//     }
-    
-//     if(!decryptedUsername) {return res.send({username: null});} 
-//     else {return res.send({username: decryptedUsername})}
-// })
+router.get('/search/:userName', async function(request, response) {
+    const user = request.params.userName.toLowerCase();
+    let userData = await UserModel.findUsers();
+    userData = userData.filter(u => {
+        if (u.userName.toLowerCase() === user) {
+            return true;
+        }
+        return false;
+    });
+    return response.send(userData);
+})
 
 router.get('/logout/:userName', async function(req, res) {
     const username = req.params.userName;
-    res.cookie('userName', '', {maxAge: 0,})
-    res.cookie('token', '', {maxAge: 0,})
+    res.cookie('token', '', {maxAge: 0})
     res.send("You are successfully logged out.");
 });
 
@@ -54,5 +49,13 @@ router.get('/:username', async function(req, res) {
     const userData = await UserModel.findUserByUsername(username);
     return res.send(userData);
 })
+
+router.put("/:userId", async(request, response) => {
+    console.log("in put request");
+    const userId = request.params.userId;
+    const userBody = request.body;
+    const postRes = await UserModel.updateUser(userId, userBody);
+    response.send(postRes);
+  });
 
 module.exports = router

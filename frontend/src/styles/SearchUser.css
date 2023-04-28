@@ -22,7 +22,8 @@
   }
 }
 #search-btn{
-  border-radius: 2px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius:25px;
   border: 1px solid #6c757d;
   background: rgb(156 39 176 / 59%);
   color: whitesmoke;

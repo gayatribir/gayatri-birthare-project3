@@ -1,37 +1,52 @@
-import React,{useState, useContext} from "react";
+import React,{useState} from "react";
 import axios from "axios";
-import {useNavigate, Link} from "react-router-dom"
-import { AppContext } from '../context';
+import {useNavigate} from "react-router-dom"
+import {toast } from 'react-toastify';
 
 export default function SignUp(){
   const[message, setMessage] = useState("")
   const[userName, setUserName] = useState("")
   const[password, setPassword] = useState("")
+  const[firstName, setFirstName] = useState("")
+  const[lastName, setLastName] = useState("")
   const navigate = useNavigate();
-  const {dispatch} = useContext(AppContext);
 
-  const navigateToSignIn=()=>{navigate("/signin");}
+  const navigateToSignIn = ()=>{navigate("/signin");}
 
   async function submit(event){
     event.preventDefault();
+    event.preventDefault();
+    if(userName == "" || password == "" || firstName=="" || lastName==""){
+      setMessage("All fields are mandatory. Please enter details.");
+      return;
+    }
     try{
-      const result = await axios.post(`http://localhost:8000/api/user/signin`, {
-        userName,password
+      const result = await axios.post(`/api/user/signup`, {
+        userName,
+        password,
+        firstName,
+        lastName
       });
-      if(result.status === 200){navigate("/home");dispatch({type: "SIGNUP"});}
-      else if(result.status !== 409){setMessage(result.data);}
-      else
-      {setMessage("Well that's embarrasing!! For me!! Could you please try again.")}
+      if(result.status === 200) {
+        toast.success("Yay!! 🎉 You have registered successfully.");
+        navigate("/");
+      }
     }catch(e){
-      setMessage("Error occurred."+e);
+      if(e.response.status === 409){
+        setMessage(e.response.data);
+      } else{
+        setMessage("Error occurred."+e);
+      }
+      
     } 
   }
 
   return(
-<div className="login-div">
-  {message}
-  <div className="Auth-form-container">
-      <form action="POST" className="Auth-form">
+<div className="signup-div">
+
+  <div className="signup-auth-form-container">
+    <div className="div-message">{message}</div>
+      <form action="POST" className="Auth-form-signup">
         <div className="Auth-form-content">
           <h1 className="Auth-form-title">Sign Up</h1>
           <div className="text-center">
@@ -59,33 +74,9 @@ export default function SignUp(){
           <div className="d-grid gap-2 mt-3">
             <button type="submit" className="btn btn-primary" onClick={submit}>Submit</button>
           </div>
-          <p className="forgot-password text-right mt-2">
-              Forgot <a href="#">password?</a>
-            </p>
         </div>
       </form>
     </div>
-  <h1>Login</h1>
-  
-  <form action="POST">
-    <input type="userName" onChange={(e)=>{setUserName(e.target.value)}} placeholder="Username" id="username"></input>
-    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} placeholder="Password" id="password"></input>
-    <input type="submit" onClick={submit}/>
-  </form>
-  <br/>
-  <p>OR</p>
-  <br/>
-  <Link to="/signup">Signup Page</Link>
-
-  {/* <form onSubmit = {submitSignin}>
-    <label htmlFor="userName">User Name:</label>
-    <input name = "userName" />
-    <br />
-    <label htmlFor="password">Password:</label>
-    <input name = "password" />
-    <br />
-    <button type = "submit">SignIn</button>
-  </form> */}
 </div>
   )
 }

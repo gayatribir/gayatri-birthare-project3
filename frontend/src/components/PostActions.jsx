@@ -11,7 +11,7 @@ function PostActions({tweetId}) {
 
     <Dropdown.Menu>
       <Dropdown.Item href={"/edit/"+tweetId}>Edit</Dropdown.Item>
-      <Dropdown.Item href={"/delete/"+tweetId}>Delete</Dropdown.Item>
+      <Dropdown.Item href={"/delete/"+tweetId+"_"}>Delete</Dropdown.Item>
     </Dropdown.Menu>
   </Dropdown>
   );

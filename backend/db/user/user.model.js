@@ -16,8 +16,13 @@ function findUsers() {
     return UserModel.find().exec();
 }
 
+function updateUser(userName, user) {
+    return UserModel.findByIdAndUpdate(userName, user, {new:true});
+}
+
 module.exports = {
     createUser,
     findUserByUsername,
-    findUsers
+    findUsers,
+    updateUser
 }

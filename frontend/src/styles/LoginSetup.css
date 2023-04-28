@@ -1,9 +1,9 @@
 #signin-btn{
-  background: none;
+  background: rgb(156 39 176 / 59%);;
   margin-right: 5px;
 }
 
-#signup-btn{background: none;}
+#signup-btn{background: rgb(156 39 176 / 59%);;}
 
 .nav-options-div{
   display: flex;
@@ -12,13 +12,18 @@
 }
 
 .avatar-div{
-  
+  display: block;
 }
 @media screen and (max-width: 500px) {
   .avatar-div{
-    visibility: hidden;
+   display: none;
+   width: 0px;
+   height: 0px;
   }
-}
-.nav-options-div{
-
+  #signup-btn{
+    font-size: small;
+  }
+  #signin-btn{
+    font-size: small;
+  }
 }

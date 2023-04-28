@@ -3,26 +3,17 @@ import { useNavigate } from "react-router";
 
 export default function SearchUser(){
   const [userName, setUserName] = useState("");
-  const [userRecords, setUserRecords] = useState([]);
   const navigate = useNavigate();
 
   const onChange=(value)=>{
     setUserName(value);
   }
 
-  const onSearch =(event)=>{
-    if(userName != null && userName!=" " && userName.trim().length > 0){navigate("/users/"+userName);}
-      
-  }
-  const keyDownHandler = event => {
-    console.log('User pressed: ', event.key);
-
-    if (event.key === 'Enter') {
-      event.preventDefault();
-
+  const onSearch =()=>{
+    if(userName != null && userName!=" " && userName.trim().length > 0){
       navigate("/users/"+userName);
-    }
-  };
+    } 
+  }
 
   return (
     <div className="search-div">
@@ -32,7 +23,6 @@ export default function SearchUser(){
               <input type="button" id="search-btn" className="" onClick={onSearch} value="Search"></input>
             </div>
         </div>
-        {/* {userRecords.length > 0 ? <Navigate to="/users" state={{ userRecords: userRecords}} replace={true} /> : ""} */}
     </div>
   )
 }

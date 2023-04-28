@@ -6,6 +6,9 @@ const TweetModel = require('../db/tweet/tweet.model');
 
 router.get("/:tweetId", async (req, res) => {
   const tweetId = req.params.tweetId;
+  if(tweetId == 'undefined'){
+    res.status(200).send("Paramater is null or undefined: getTweetById", tweet);
+  }
   const tweet = await TweetModel.getTweetById(tweetId);
   res.send(tweet);
 });
@@ -25,20 +28,37 @@ router.get("/user/:userName", async (req, res) => {
 
 router.post("/", async (request, response) => {
   const tweet = request.body;
-  const tweetRes = await TweetModel.createTweet(tweet);
-  // console.log("post created with id"+tweetRes);
-  response.send(tweetRes);
+  try{
+    const tweetRes = await TweetModel.createTweet(tweet);
+    response.send(tweetRes);
+  }catch(e){
+    return response.status(500).send(e);
+  }
+  
 });
 
 router.put("/:postId", async(request, response) => {
   const postId = request.params.postId;
   const postBody = request.body;
-  // if(postBody=={}){console.log("Body is empty")}
-  // console.log("Found post body "+postBody);
- 
-  const postRes = await TweetModel.updatePost(postId, postBody);
-  // console.log("post created with id"+postRes);
-  response.send(postRes);
+  try{
+    const postRes = await TweetModel.updatePost(postId, postBody);
+    response.send(postRes);
+  }catch(e){
+    return response.status(500).send(e);
+  }
+  
+});
+
+router.delete("/:postId", async(request, response) => {
+  console.log("Deleting post id");
+  const postId = request.params.postId;
+  try{
+    const postRes = await TweetModel.deleteTweet(postId);
+    response.status(200).send(postRes);
+  }catch(e){
+    return response.status(500).send(e);
+  }
+  
 });
 
 module.exports = router ;

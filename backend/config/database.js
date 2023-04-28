@@ -1,6 +1,13 @@
 const mongoose = require("mongoose");
 
-const { MONGO_URI } = process.env;
+const MONGO_URI = 'mongodb+srv://gayatribirthare5:wyHYxTOGTNSaKCFa@cluster0.jrf69qi.mongodb.net/?retryWrites=true&w=majority';
+// mongoose.connect(MONGO_URI,  { useNewUrlParser: true });
+
+
+
+
+
+// const { MONGO_URI } = process.env;
 
 exports.connect = () => {
   // Connecting to the database

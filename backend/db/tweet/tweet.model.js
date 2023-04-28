@@ -25,7 +25,6 @@ function deleteTweet(id) {
 function updatePost(postId, post) {
   return TweetModel.findByIdAndUpdate(postId, post, {new:true});
 }
-
 module.exports = {
   createTweet,
   returnAllTweets,

@@ -29,6 +29,19 @@
     padding-left: 1rem;
   }
   .intro-div{
-    padding-left: 1rem;
+    padding-left: 0px;
   }
+  .profile-avatar-div {
+    display: block;
+  }
+}
+
+.editable-description{
+  border: 2px solid black;
+}
+
+.desc-p:hover + .hide {
+  display: inline-flex;
+  color: rgb(29, 161, 242);
+  font-style: italic;
 }

@@ -59,7 +59,8 @@
   .nav-items-div{
       display: flex;
       flex-direction: row;
-      padding: 0 0.01vw;
+      /* padding: 0 0.01vw; */
+      padding-top: 10px;
   }
   .list-item{
       width: 20%;
@@ -70,16 +71,14 @@
   .logo:hover{
       opacity: 0.5;
   }
-  .logo{
-    size: 2px;
-  }
+ 
   .div-logo-search{
     padding-top: 5px;
   }
 }
 
 .logo{
-  padding-left: 12px;;
+  padding-left: 8px;;
 padding-right: 10px;
 }
 
@@ -90,8 +89,9 @@ padding-right: 10px;
 
 .logo-a{
   text-decoration-line: none;
-  font-size: medium;
+  font-size: small;
   color: maroon;
+  font-weight: bold;
 }
 
 .Dropdown-control{

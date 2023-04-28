@@ -4,22 +4,18 @@ import Avatar from "./Avatar";
 import Button from 'react-bootstrap/Button';
 import {useNavigate} from "react-router-dom"
 
-export default function LoginSetup(isLoggedIn, userName){
+export default function LoginSetup(userName){
   const navigate = useNavigate();
   
-  const onSignInClick=(event)=>{
-    navigate("/signin");
-  }
+  const onSignInClick=()=>navigate("/signin");
   
-  const onSignUpClick=(event)=>{
-    navigate("/signup");
-  }
+  const onSignUpClick=()=>navigate("/signup");
 
-  if(isLoggedIn.isLoggedIn){
+  if(userName.userName != "" && userName.userName != undefined){
     return(
 <div className="nav-options-div">
-  <UserNavigate userName={isLoggedIn.userName}></UserNavigate>
-  <div className="avatar-div"><Avatar userName={isLoggedIn.userName.charAt(0)}></Avatar></div>
+  <UserNavigate userName={userName.userName}></UserNavigate>
+  <div className="avatar-div"><Avatar userName={userName.userName.charAt(0)}></Avatar></div>
 </div>
     )
   }else{

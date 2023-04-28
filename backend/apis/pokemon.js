@@ -93,7 +93,7 @@ router.get('/', function(request, response) {
 
 })
 
-// http://localhost:8000/api/pokemon/pikachu
+// /api/pokemon/pikachu
 /*
 
     request.params = {
@@ -123,7 +123,7 @@ router.get('/:id', function(request, response) {
 
 })
 
-//http://localhost:8000/api/pokemon/find?color=yellow&size=large
+///api/pokemon/find?color=yellow&size=large
 /*
     req.query = {
         color: 'yellow',
@@ -149,7 +149,7 @@ router.get('/find', function(req, res) {
 
 })
 
-// http://localhost:8000 + /api/pokemon + /
+//  + /api/pokemon + /
 router.get('/pikachu', function(req, res) {
     res.send("This is the pikachu")
 })

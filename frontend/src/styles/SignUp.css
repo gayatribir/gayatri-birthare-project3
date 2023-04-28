@@ -1,7 +1,34 @@
 .signup-div{
-  padding-top: 8%;
-  padding-left: 2%;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 43vh;
+  padding-top: 0%;
+  padding-left: 0%;
+ 
 }
 .flex-fields{
   display: flex;
+}
+.signup-auth-form-container{
+  width: 45%;
+  padding-top: 117px;
+}
+@media screen and (max-width: 500px) {
+  .signup-auth-form-container{
+    height: 67vh;
+    width: 90vw;
+    /* margin-left: 1rem; */
+  }
+}
+.Auth-form-signup{
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+.div-message{
+  color: red;
+  /* height: 10px; */
 }
