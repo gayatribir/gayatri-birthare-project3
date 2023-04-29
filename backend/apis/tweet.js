@@ -9,21 +9,29 @@ router.get("/:tweetId", async (req, res) => {
   if(tweetId == 'undefined'){
     res.status(200).send("Paramater is null or undefined: getTweetById", tweet);
   }
-  const tweet = await TweetModel.getTweetById(tweetId);
-  res.send(tweet);
+  try{
+    const tweet = await TweetModel.getTweetById(tweetId);
+    return res.send(tweet);
+  }catch(e){
+    return res.send("Error occurred in getTweetById ", e);
+  }
 });
 
 router.get("/user/:userName", async (req, res) => {
   const userName = req.params.userName.toLowerCase();
-  let tweet = await TweetModel.getTweetByUserName(userName);
-  tweet = tweet.filter(t => {
-    if (t.userName.toLowerCase() === userName) {
-        return true;
-    }
-    return false;
-});
-  // console.log(tweet);
-  res.send(tweet);
+  try{
+    let tweet = await TweetModel.getTweetByUserName(userName);
+    tweet = tweet.filter(t => {
+      if (t.userName.toLowerCase() === userName) {
+          return true;
+      }
+      return false;
+    });
+      res.send(tweet);
+  }catch(e){
+    return res.send("Error occurred in getTweetByUserName ", e);
+  }
+
 });
 
 router.post("/", async (request, response) => {
@@ -35,6 +43,8 @@ router.post("/", async (request, response) => {
     }catch(e){
       return response.status(500).send(e);
     }  
+  } else{
+    return response.status(401).send("Invalid Token");
   }
 });
 
@@ -48,6 +58,8 @@ router.put("/:postId", async(request, response) => {
     }catch(e){
       return response.status(500).send(e);
     }
+  }else{
+    return response.status(401).send("Invalid Token");
   }
 });
 
@@ -61,6 +73,8 @@ router.delete("/:postId", async(request, response) => {
     }catch(e){
       return response.status(500).send(e);
     }
+  }else{
+    return response.status(401).send("Invalid Token");
   }
 });
 

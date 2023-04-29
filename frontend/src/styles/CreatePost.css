@@ -56,5 +56,6 @@
   .create-post-div{
     width: 340px;
     height: 130px;
+    font-size: small;
   }
 }

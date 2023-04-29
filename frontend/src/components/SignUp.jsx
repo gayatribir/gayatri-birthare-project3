@@ -64,7 +64,7 @@ export default function SignUp(){
             <input className="form-control mt-1" type="lastName" onChange={(e)=>{setLastName(e.target.value)}} placeholder="Enter last name" id="lastname"></input>
           </div>
           <div className="form-group mt-3">
-            <label>Email address</label>
+            <label>User Name</label>
             <input className="form-control mt-1" type="userName" onChange={(e)=>{setUserName(e.target.value)}} placeholder="Enter username" id="username"></input>
           </div>
           <div className="form-group mt-3">

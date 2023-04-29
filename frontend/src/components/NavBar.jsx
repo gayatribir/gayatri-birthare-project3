@@ -7,7 +7,6 @@ import {AppContext} from "../context"
 function Navbar(){
   const {userName} = useContext(AppContext);
   
-  console.log("user_info: ", userName);
   return (
     <nav className="nav">
       <div className='div-logo-search'>

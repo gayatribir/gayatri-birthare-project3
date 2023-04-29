@@ -80,15 +80,13 @@ function App() {
         <Routes>
           <Route path="/signin" element={<SignIn/>}></Route>
           <Route path="/signup" element={<SignUp/>}></Route>
-          <Route path="/signout" element={<SignOut/>}></Route>
           <Route path="/" element={<Twitter/>}></Route>
           <Route path="/user/:userName" element={<User/>}></Route>
           <Route path="/users/:userName" element={<UserList/>}></Route>
           <Route path="/edit/:postId" element={<EditPost/>}></Route>
           <Route path="/editprofile/:userName" element={<EditDesc/>}></Route>
-          <Route path="/delete/:postId" element={<EditPost/>}></Route>
         </Routes>
-        <ToastContainer position="top-right" autoClose={2000}/>
+        <ToastContainer position="top-right" autoClose={2000} className="toast-div"/>
       </div>
     </AppContext.Provider>
   );

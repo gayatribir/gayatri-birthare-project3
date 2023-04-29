@@ -106,3 +106,7 @@
     /* padding-right: 14px; */
   }
 }
+.remove-undeline-link{
+  text-decoration: none;
+  color: inherit;
+}

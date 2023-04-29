@@ -3,3 +3,12 @@
   padding-top: 41px;
   padding-left: 1rem;
 }
+.toast-div{
+  margin-top: 40px;
+}
+
+@media screen and (max-width: 500px) {
+  .toast-div{
+    margin-top: 180px;
+  }
+}
