@@ -35,7 +35,7 @@ router.get('/search/:userName', async function(request, response) {
     try{
         let userData = await UserModel.findUsers();
         userData = userData.filter(u => {
-            if (u.userName.toLowerCase() === user) {
+            if (u.userName.toLowerCase().includes(user)) {
                 return true;
             }
             return false;

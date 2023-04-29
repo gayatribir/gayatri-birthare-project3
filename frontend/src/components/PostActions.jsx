@@ -5,9 +5,6 @@ import {toast } from 'react-toastify';
 
 function PostActions({tweetId}) {
   const navigate = useNavigate();
-  // const [isEdit, setIsEdit] = useState(false);
-
-  // const editPost =()=> {setIsEdit(!isEdit);}
 
   async function deletePost(){
     const request = await axios.delete(`/api/tweet/`+tweetId);

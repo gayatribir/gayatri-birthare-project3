@@ -10,7 +10,7 @@ export default function UserList() {
   const [users, setUsers] = useState([]);
  
   async function searchUsers(userName){
-    const request = await axios.get(`/api/user/` + userName);
+    const request = await axios.get(`/api/user/search/` + userName);
     setUsers(request.data);
     console.log("user search done");
     console.log(request.data);
@@ -29,7 +29,7 @@ export default function UserList() {
         users.map(user =>(
             <li key={user._id} className="user-result-li">
               <Avatar userName={user.firstName.charAt(0)}></Avatar>
-              <Link to={"/user/"+user.userName} element={<User></User>} className="capitalize-link">{user.firstName+" "+user.lastName}</Link>
+              <Link to={"/user/"+user.userName} element={<User></User>}>@{user.userName}</Link>
            </li>
           )) : ""
         }
