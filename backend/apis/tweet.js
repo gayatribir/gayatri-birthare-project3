@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const TweetModel = require('../db/tweet/tweet.model');
-
+const auth = require('../middleware/auth')
 
 
 router.get("/:tweetId", async (req, res) => {
@@ -27,38 +27,41 @@ router.get("/user/:userName", async (req, res) => {
 });
 
 router.post("/", async (request, response) => {
-  const tweet = request.body;
-  try{
-    const tweetRes = await TweetModel.createTweet(tweet);
-    response.send(tweetRes);
-  }catch(e){
-    return response.status(500).send(e);
+  if(auth.verifyToken(request, response)) {
+    const tweet = request.body;
+    try{
+      const tweetRes = await TweetModel.createTweet(tweet);
+      response.send(tweetRes);
+    }catch(e){
+      return response.status(500).send(e);
+    }  
   }
-  
 });
 
 router.put("/:postId", async(request, response) => {
-  const postId = request.params.postId;
-  const postBody = request.body;
-  try{
-    const postRes = await TweetModel.updatePost(postId, postBody);
-    response.send(postRes);
-  }catch(e){
-    return response.status(500).send(e);
+  if(auth.verifyToken(request, response)) {
+    const postId = request.params.postId;
+    const postBody = request.body;
+    try{
+      const postRes = await TweetModel.updatePost(postId, postBody);
+      response.send(postRes);
+    }catch(e){
+      return response.status(500).send(e);
+    }
   }
-  
 });
 
 router.delete("/:postId", async(request, response) => {
-  console.log("Deleting post id");
-  const postId = request.params.postId;
-  try{
-    const postRes = await TweetModel.deleteTweet(postId);
-    response.status(200).send(postRes);
-  }catch(e){
-    return response.status(500).send(e);
+  if(auth.verifyToken(request, response)) {
+    console.log("Deleting post id");
+    const postId = request.params.postId;
+    try{
+      const postRes = await TweetModel.deleteTweet(postId);
+      response.status(200).send(postRes);
+    }catch(e){
+      return response.status(500).send(e);
+    }
   }
-  
 });
 
 module.exports = router ;

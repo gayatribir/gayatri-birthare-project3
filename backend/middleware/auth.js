@@ -1,21 +1,22 @@
 const jwt = require("jsonwebtoken");
 
-const config = process.env;
 
-const verifyToken = (req, res, next) => {
+const verifyToken = (req, res) => {
   const token = req.cookies.token;// || req.headers["x-access-token"];
   console.log("cookies: ",req.cookies);
   console.log(req.path);
   if (!token) {
-    return res.status(403).send("A token is required for authentication");
+    res.status(403).send("A token is required for authentication");
+    return false;
   }
   try {
     const decoded = jwt.verify(token, "some_secret_key");
     req.user = decoded;
   } catch (err) {
-    return res.status(401).send("Invalid Token");
+    res.status(401).send("Invalid Token");
+    return false;
   }
-  return next();
+  return true;
 };
 
 module.exports = {

@@ -12,7 +12,6 @@ const UserModel = require('./db/user/user.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const TweetModel = require('./db/tweet/tweet.model');
-const auth = require("./middleware/auth");
 
 const app = express();
 
@@ -98,8 +97,6 @@ app.get("/api/tweet/", async(req, res) => {
   }
     
   });
-
-app.use(auth.verifyToken);
 
 app.use('/api/tweet/', tweet);
 app.use('/api/user/', user)
